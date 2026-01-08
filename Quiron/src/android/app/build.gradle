@@ -1,0 +1,110 @@
+apply plugin: 'com.android.application'
+
+android {
+    namespace "br.com.quironconcursos.app"
+    compileSdkVersion 34
+    
+    defaultConfig {
+        applicationId "br.com.quironconcursos.app"
+        minSdkVersion 22
+        targetSdkVersion 34
+        versionCode 1
+        versionName "2.0.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        
+        // Multilanguage support
+        resConfigs "pt", "en"
+        
+        // Vector drawables support
+        vectorDrawables.useSupportLibrary = true
+        
+        manifestPlaceholders = [
+            appName: "Quiron Concursos"
+        ]
+    }
+    
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            
+            // Assinatura do app
+            signingConfig signingConfigs.release
+        }
+        
+        debug {
+            applicationIdSuffix ".debug"
+            versionNameSuffix "-DEBUG"
+            debuggable true
+        }
+    }
+    
+    signingConfigs {
+        release {
+            if (project.hasProperty('QUIRON_RELEASE_STORE_FILE')) {
+                storeFile file(QUIRON_RELEASE_STORE_FILE)
+                storePassword QUIRON_RELEASE_STORE_PASSWORD
+                keyAlias QUIRON_RELEASE_KEY_ALIAS
+                keyPassword QUIRON_RELEASE_KEY_PASSWORD
+            }
+        }
+    }
+    
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    
+    buildFeatures {
+        viewBinding true
+    }
+    
+    bundle {
+        language {
+            enableSplit = false
+        }
+        density {
+            enableSplit = true
+        }
+        abi {
+            enableSplit = true
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
+    implementation 'androidx.core:core-splashscreen:1.0.1'
+    implementation 'com.google.android.material:material:1.11.0'
+    
+    // Capacitor
+    implementation project(':capacitor-android')
+    implementation project(':capacitor-app')
+    implementation project(':capacitor-haptics')
+    implementation project(':capacitor-keyboard')
+    implementation project(':capacitor-push-notifications')
+    implementation project(':capacitor-splash-screen')
+    implementation project(':capacitor-status-bar')
+    implementation project(':capacitor-local-notifications')
+    implementation project(':capacitor-network')
+    implementation project(':capacitor-storage')
+    
+    // Firebase Cloud Messaging (para notificações)
+    implementation platform('com.google.firebase:firebase-bom:32.7.0')
+    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'com.google.firebase:firebase-analytics'
+    
+    // ✅ Google AdMob (monetização)
+    implementation 'com.google.android.gms:play-services-ads:22.6.0'
+    
+    // Testing
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
+
+// Google Services (Firebase)
+apply plugin: 'com.google.gms.google-services'

@@ -1,0 +1,3 @@
+// BACKUP COMPLETO DO SERVIDOR - NÃO DELETAR
+// Este é o servidor completo com todas as funcionalidades
+// Usar este arquivo para restaurar o servidor completo após identificar o problema

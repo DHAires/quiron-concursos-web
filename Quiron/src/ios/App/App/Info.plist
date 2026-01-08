@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>pt_BR</string>
+	<key>CFBundleDisplayName</key>
+	<string>Quiron Concursos</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>2.0.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	
+	<!-- Orientações suportadas -->
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	
+	<!-- Status Bar -->
+	<key>UIStatusBarHidden</key>
+	<false/>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<true/>
+	
+	<!-- Launch Screen -->
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	
+	<!-- Permissões -->
+	<key>NSCameraUsageDescription</key>
+	<string>O Quiron Concursos precisa acessar a câmera para upload de documentos e foto de perfil.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>O Quiron Concursos precisa acessar suas fotos para upload de documentos e foto de perfil.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>O Quiron Concursos precisa salvar imagens na sua biblioteca de fotos.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>O Quiron Concursos pode usar o microfone para recursos futuros de áudio.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>O Quiron Concursos usa sua localização para personalizar conteúdo regional.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>O Quiron Concursos pode adicionar lembretes ao seu calendário.</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>O Quiron Concursos pode criar lembretes para seus estudos.</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>O Quiron Concursos usa dados para melhorar sua experiência de estudo.</string>
+	
+	<!-- App Transport Security -->
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<false/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>quironconcursos.com.br</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<true/>
+				<key>NSExceptionMinimumTLSVersion</key>
+				<string>TLSv1.2</string>
+			</dict>
+		</dict>
+	</dict>
+	
+	<!-- Universal Links -->
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>applinks:quironconcursos.com.br</string>
+		<string>applinks:www.quironconcursos.com.br</string>
+	</array>
+	
+	<!-- URL Schemes -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>br.com.quironconcursos.app</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>quiron</string>
+			</array>
+		</dict>
+	</array>
+	
+	<!-- Background Modes -->
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+		<string>fetch</string>
+	</array>
+	
+	<!-- Capacitor Configuration -->
+	<key>CapacitorServerURL</key>
+	<string>https://quironconcursos.com.br</string>
+	<key>CapacitorServerOriginalScheme</key>
+	<string>https</string>
+	
+	<!-- Firebase -->
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<true/>
+	
+	<!-- Privacy - Face ID Usage -->
+	<key>NSFaceIDUsageDescription</key>
+	<string>O Quiron Concursos usa Face ID para login rápido e seguro.</string>
+	
+	<!-- Required for iOS 14+ -->
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false/>
+		<key>UISceneConfigurations</key>
+		<dict/>
+	</dict>
+</dict>
+</plist>

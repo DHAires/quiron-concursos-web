@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline - Quiron Concursos</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      text-align: center;
+      max-width: 500px;
+    }
+
+    .icon {
+      font-size: 120px;
+      margin-bottom: 30px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 15px;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    p {
+      font-size: 18px;
+      color: #94a3b8;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 15px 40px;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+    }
+
+    .button:active {
+      transform: translateY(0);
+    }
+
+    .features {
+      margin-top: 50px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .features h2 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #60a5fa;
+    }
+
+    .feature-list {
+      text-align: left;
+      list-style: none;
+    }
+
+    .feature-list li {
+      padding: 10px 0;
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    .feature-list li:before {
+      content: "✓ ";
+      color: #22c55e;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    .status {
+      margin-top: 30px;
+      padding: 15px;
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: 8px;
+      color: #fca5a5;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .icon { font-size: 80px; }
+      h1 { font-size: 24px; }
+      p { font-size: 16px; }
+      .button { padding: 12px 30px; font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="icon">🐎</div>
+    
+    <h1>Você está Offline</h1>
+    
+    <p>
+      Parece que você perdeu a conexão com a internet. 
+      Não se preocupe, o Quiron Concursos continua trabalhando em modo offline!
+    </p>
+
+    <button class="button" onclick="window.location.reload()">
+      🔄 Tentar Reconectar
+    </button>
+
+    <div class="features">
+      <h2>🎮 Recursos Disponíveis Offline:</h2>
+      <ul class="feature-list">
+        <li>Banco de Questões completo (950 questões)</li>
+        <li>Revisão de questões já respondidas</li>
+        <li>Estatísticas de progresso local</li>
+        <li>Configurações do aplicativo</li>
+        <li>Acesso ao seu perfil</li>
+      </ul>
+    </div>
+
+    <div class="status">
+      <strong>⚠️ Recursos Limitados:</strong><br>
+      Game Épico, Chat IA e sincronização com servidor requerem conexão.
+    </div>
+  </div>
+
+  <script>
+    // Tentar reconectar automaticamente
+    window.addEventListener('online', () => {
+      console.log('✅ Conexão restaurada!');
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    });
+
+    // Monitorar status de conexão
+    window.addEventListener('offline', () => {
+      console.log('❌ Conexão perdida!');
+    });
+
+    // Log status inicial
+    console.log('📡 Status de conexão:', navigator.onLine ? 'Online' : 'Offline');
+  </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+{
+  "name": "quiron-concursos",
+  "version": "2.0.0",
+  "description": "Sistema completo de preparação para concursos públicos com game 3D integrado",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "build:android": "npm run build && npx cap sync android && npx cap open android",
+    "build:ios": "npm run build && npx cap sync ios && npx cap open ios",
+    "sync": "npx cap sync",
+    "sync:android": "npx cap sync android",
+    "sync:ios": "npx cap sync ios",
+    "open:android": "npx cap open android",
+    "open:ios": "npx cap open ios",
+    "add:android": "npx cap add android",
+    "add:ios": "npx cap add ios",
+    "copy": "npx cap copy",
+    "copy:android": "npx cap copy android",
+    "copy:ios": "npx cap copy ios",
+    "update": "npx cap update",
+    "update:android": "npx cap update android",
+    "update:ios": "npx cap update ios",
+    "build:release:android": "npm run build && npx cap sync android && cd android && ./gradlew assembleRelease",
+    "build:release:ios": "npm run build && npx cap sync ios && cd ios/App && xcodebuild -workspace App.xcworkspace -scheme App -configuration Release archive",
+    "icons:generate": "npx capacitor-assets generate",
+    "resources:generate": "npx capacitor-resources generate"
+  },
+  "dependencies": {
+    "@capacitor/android": "^5.5.1",
+    "@capacitor/app": "^5.0.6",
+    "@capacitor/core": "^5.5.1",
+    "@capacitor/haptics": "^5.0.6",
+    "@capacitor/ios": "^5.5.1",
+    "@capacitor/keyboard": "^5.0.6",
+    "@capacitor/push-notifications": "^5.1.0",
+    "@capacitor/splash-screen": "^5.0.6",
+    "@capacitor/status-bar": "^5.0.6",
+    "@capacitor/local-notifications": "^5.0.6",
+    "@capacitor/network": "^5.0.6",
+    "@capacitor/storage": "^1.2.5",
+    "@capacitor-community/admob": "^5.1.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "lucide-react": "latest",
+    "three": "^0.160.0"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.1",
+    "@capacitor/cli": "^5.5.1",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@types/three": "^0.160.0",
+    "@vitejs/plugin-react": "^4.2.0",
+    "typescript": "^5.3.0",
+    "vite": "^5.0.0",
+    "tailwindcss": "^4.0.0"
+  },
+  "capacitor": {
+    "appId": "br.com.quironconcursos.app",
+    "appName": "Quiron Concursos",
+    "webDir": "dist"
+  },
+  "author": {
+    "name": "Quiron Concursos",
+    "email": "contato@quironconcursos.com.br",
+    "url": "https://quironconcursos.com.br"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quironconcursos/quiron-app.git"
+  },
+  "keywords": [
+    "concursos",
+    "concursos públicos",
+    "educação",
+    "game",
+    "quiz",
+    "estudos",
+    "aprovação",
+    "questões",
+    "preparatório"
+  ]
+}

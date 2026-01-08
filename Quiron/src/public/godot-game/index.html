@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<title>Quiron Concursos - Game Épico</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		body {
+			background-color: #1a1a2e;
+			overflow: hidden;
+			touch-action: none;
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+		}
+		#canvas {
+			display: block;
+			margin: 0;
+			color: white;
+			width: 100%;
+			height: 100vh;
+		}
+		#canvas:focus {
+			outline: none;
+		}
+		.godot {
+			font-family: 'Noto Sans', 'Droid Sans', Arial, sans-serif;
+			color: #e0e0e0;
+		}
+		/* Loading Screen */
+		#loading-container {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			z-index: 1000;
+			transition: opacity 0.5s ease-out;
+		}
+		#loading-container.hidden {
+			opacity: 0;
+			pointer-events: none;
+		}
+		.loading-logo {
+			width: 120px;
+			height: 120px;
+			margin-bottom: 30px;
+			animation: pulse 2s ease-in-out infinite;
+		}
+		@keyframes pulse {
+			0%, 100% { transform: scale(1); opacity: 1; }
+			50% { transform: scale(1.05); opacity: 0.8; }
+		}
+		.loading-text {
+			color: #00d4ff;
+			font-size: 24px;
+			font-weight: bold;
+			margin-bottom: 20px;
+			text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+		}
+		.loading-bar-container {
+			width: 300px;
+			height: 8px;
+			background: rgba(255, 255, 255, 0.1);
+			border-radius: 10px;
+			overflow: hidden;
+			margin-bottom: 15px;
+		}
+		.loading-bar {
+			height: 100%;
+			background: linear-gradient(90deg, #00d4ff, #00ff88);
+			width: 0%;
+			transition: width 0.3s ease;
+			box-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+		}
+		.loading-status {
+			color: #a0a0a0;
+			font-size: 14px;
+		}
+		/* Error Display */
+		#error-container {
+			display: none;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background: rgba(255, 50, 50, 0.95);
+			color: white;
+			padding: 30px;
+			border-radius: 15px;
+			max-width: 500px;
+			text-align: center;
+			z-index: 2000;
+			box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+		}
+		.error-title {
+			font-size: 20px;
+			font-weight: bold;
+			margin-bottom: 15px;
+		}
+		.error-message {
+			font-size: 14px;
+			line-height: 1.6;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" tabindex="1">
+		HTML5 canvas appears to be unsupported in the current browser.<br>
+		Please try updating or use a different browser.
+	</canvas>
+
+	<!-- Loading Screen -->
+	<div id="loading-container">
+		<div class="loading-logo">🏛️</div>
+		<div class="loading-text">Quiron Concursos</div>
+		<div class="loading-bar-container">
+			<div class="loading-bar" id="loading-bar"></div>
+		</div>
+		<div class="loading-status" id="loading-status">Carregando Game...</div>
+	</div>
+
+	<!-- Error Display -->
+	<div id="error-container">
+		<div class="error-title">⚠️ Erro ao Carregar</div>
+		<div class="error-message" id="error-message"></div>
+	</div>
+
+	<script src="index.js"></script>
+	<script>
+		const GODOT_CONFIG = {
+			"args": [],
+			"canvasResizePolicy": 2,
+			"executable": "index",
+			"experimentalVK": false,
+			"focusCanvas": true,
+			"gdextensionLibs": []
+		};
+
+		const engine = new Engine(GODOT_CONFIG);
+		const loadingContainer = document.getElementById('loading-container');
+		const loadingBar = document.getElementById('loading-bar');
+		const loadingStatus = document.getElementById('loading-status');
+		const errorContainer = document.getElementById('error-container');
+		const errorMessage = document.getElementById('error-message');
+
+		// Progress callback
+		function onProgress(current, total) {
+			const percent = Math.round((current / total) * 100);
+			loadingBar.style.width = percent + '%';
+			loadingStatus.textContent = `Carregando... ${percent}%`;
+		}
+
+		// Error handler
+		function showError(message) {
+			console.error('Godot Error:', message);
+			loadingContainer.style.display = 'none';
+			errorContainer.style.display = 'block';
+			errorMessage.textContent = message;
+		}
+
+		// Communication with React parent
+		function sendToReact(event, data) {
+			window.parent.postMessage({
+				type: 'godot-event',
+				event: event,
+				data: data
+			}, '*');
+		}
+
+		// Receive messages from React
+		window.addEventListener('message', function(e) {
+			if (e.data && e.data.type === 'react-to-godot') {
+				console.log('React message received:', e.data);
+				// Forward to Godot instance if available
+				if (window.godotInstance) {
+					// Call Godot JavaScript interface if implemented
+					// window.godotInstance.sendMessage(e.data.command, e.data.params);
+				}
+			}
+		});
+
+		// Start engine
+		engine.startGame({
+			'onProgress': onProgress,
+			'onPrint': function(text) {
+				console.log('[Godot]', text);
+			},
+			'onPrintError': function(text) {
+				console.error('[Godot Error]', text);
+			}
+		}).then(function() {
+			// Game loaded successfully
+			loadingContainer.classList.add('hidden');
+			setTimeout(function() {
+				loadingContainer.style.display = 'none';
+			}, 500);
+			
+			// Notify React that game is ready
+			sendToReact('ready', { status: 'loaded' });
+			console.log('✅ Godot game loaded successfully!');
+		}).catch(function(err) {
+			// Error loading game
+			showError('Erro ao inicializar o game: ' + err.message);
+			sendToReact('error', { message: err.message });
+		});
+
+		// Expose sendToReact globally for Godot to call
+		window.sendToReact = sendToReact;
+	</script>
+</body>
+</html>
