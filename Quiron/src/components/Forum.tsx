@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { MessageCircle, Pin, Clock, User, Edit2, Trash2, ThumbsUp, Send, ArrowLeft, Plus, X, Eye, Crown, CheckCircle, XCircle } from 'lucide-react';
 import { projectId, publicAnonKey } from '../utils/supabase/info';
 import { forumCategories, initialForumTopics, initialForumPosts, ForumCategory, ForumTopic, ForumPost } from '../data/forumTopics';
-import quironLogo from 'figma:asset/70b524f863af498f327c1fdcc13c2dfe1cb4bd88.png';
 
 const API_BASE = `https://${projectId}.supabase.co/functions/v1/make-server-50734795`;
 

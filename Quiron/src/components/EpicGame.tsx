@@ -4,7 +4,6 @@ import { MultiplayerLobby } from './MultiplayerLobby';
 import { GameRules } from './GameRules';
 import { GameResults } from './GameResults';
 import { GodotGamePlayer } from './GodotGamePlayer';
-import quironLogo from 'figma:asset/70b524f863af498f327c1fdcc13c2dfe1cb4bd88.png';
 
 interface ThematicArea {
   id: string;
@@ -334,8 +333,15 @@ export function EpicGame({ initialArea, onBack, user }: EpicGameProps = {}) {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 py-12 px-4">
       {/* Logo Quiron - Topo centralizado */}
       <div className="flex justify-center mb-4">
-        <img src={quironLogo} alt="Quiron Logo" className="w-16 h-16 object-contain" />
-      </div>
+<div className="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-10 h-10 text-white">
+    <path d="M12 3l9 4v6c0 5-3 8-9 10-6-2-9-5-9-10V7l9-4z"/>
+    <path d="M12 3v18"/>
+    <path d="M8 7h8"/>
+    <path d="M7 11h10"/>
+    <path d="M6 15h12"/>
+  </svg>
+</div>      </div>
 
       {/* Back Button - Always visible at the top */}
       {onBack && (
