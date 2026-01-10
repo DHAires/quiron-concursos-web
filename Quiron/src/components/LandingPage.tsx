@@ -90,17 +90,13 @@ export function LandingPage({ onEnter }: LandingPageProps) {
         <div className="relative z-10 flex flex-col items-center justify-center px-4 py-4 md:px-5 md:py-6">
           
           {/* Logo - Ícone SVG do templo grego */}
-          <div className="mb-3 animate-float">
-            <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center drop-shadow-2xl">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-12 h-12 md:w-14 md:h-14 text-white">
-                <path d="M12 3l9 4v6c0 5-3 8-9 10-6-2-9-5-9-10V7l9-4z"/>
-                <path d="M12 3v18"/>
-                <path d="M8 7h8"/>
-                <path d="M7 11h10"/>
-                <path d="M6 15h12"/>
-              </svg>
-            </div>
-          </div>
+<div className="mb-3 animate-float">
+  <img 
+    src="https://lrmabyfaunhrdvdzocrz.supabase.co/storage/v1/object/public/assets/Logo-quiron-Azul.png"
+    alt="Quiron Concursos"
+    className="w-24 h-24 md:w-32 md:h-32 object-contain drop-shadow-2xl"
+  />
+</div>
 
           {/* Título principal */}
           <div className="text-center mb-3">
